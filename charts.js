@@ -1056,9 +1056,22 @@ function downloadChart(chart, filename) {
         return;
     }
     
-    // Criar link para download
-    const link = document.createElement('a');
-    link.download = `${filename}.png`;
-    link.href = chart.toBase64Image();
-    link.click();
+    try {
+        // Obter o canvas do gráfico
+        const canvas = chart.canvas;
+        
+        // Criar imagem a partir do canvas
+        const image = canvas.toDataURL('image/png', 1.0);
+        
+        // Criar link para download
+        const link = document.createElement('a');
+        link.download = `${filename}.png`;
+        link.href = image;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    } catch (error) {
+        console.error('Erro ao fazer download do gráfico:', error);
+        alert('Não foi possível fazer o download do gráfico. Por favor, tente novamente.');
+    }
 } 

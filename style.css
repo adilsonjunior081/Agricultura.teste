@@ -170,24 +170,35 @@ a:hover {
 /* Header e Navegação */
 header {
     background-color: white;
-    box-shadow: var(--shadow);
+    box-shadow: none !important;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
     padding: 15px 0;
     transition: all 0.3s ease;
+    border-bottom: none;
 }
 
 header.scrolled {
     padding: 10px 0;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: none !important;
+    background-color: white;
 }
 
 header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
+    box-shadow: none !important;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    box-shadow: none !important;
 }
 
 .logo h1 {
@@ -201,22 +212,30 @@ header .container {
 
 .leaf {
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: 250px;
+    height: 70px;
     margin-right: 10px;
-    background-image: url('leaf-icon.svg');
+    background-image: url('21. Prefeitura de Gravatá (Agricultura e Desenvolvimento Rural) - Logo + Secretaria (2).png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
+nav {
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
 nav ul {
     display: flex;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
-    margin-left: 30px;
+    margin-left: 20px;
 }
 
 nav ul li a {
@@ -224,7 +243,7 @@ nav ul li a {
     color: var(--primary-color);
     position: relative;
     padding-bottom: 5px;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -251,36 +270,38 @@ nav ul li a:hover::after {
 /* Menu Mobile e Navegação */
 .mobile-toggle {
     display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
     cursor: pointer;
-    z-index: 1000;
+    width: 30px;
+    height: 20px;
     position: relative;
+    margin-left: auto;
+    z-index: 1001;
+    background-color: transparent;
 }
 
 .mobile-toggle span {
     display: block;
+    position: absolute;
     height: 3px;
     width: 100%;
-    background-color: var(--primary-green);
-    border-radius: 3px;
-    transition: all 0.3s ease;
-    position: absolute;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    opacity: 1;
     left: 0;
+    transform: rotate(0deg);
+    transition: 0.25s ease-in-out;
 }
 
 .mobile-toggle span:nth-child(1) {
-    top: 0;
+    top: 0px;
 }
 
 .mobile-toggle span:nth-child(2) {
-    top: 9px;
+    top: 8px;
 }
 
 .mobile-toggle span:nth-child(3) {
-    top: 18px;
+    top: 16px;
 }
 
 .nav-overlay {
@@ -303,29 +324,44 @@ nav ul li a:hover::after {
 
 @media (max-width: 991px) {
     .mobile-toggle {
-        display: flex;
+        display: block;
     }
     
     .navigation-links {
         position: fixed;
-        top: 0;
-        right: -300px;
-        width: 280px;
-        height: 100vh;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        height: 0;
         background-color: white;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        display: flex;
         flex-direction: column;
-        padding: 80px 30px 30px;
-        z-index: 100;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        transition: right 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 999;
+        border: none;
+        box-shadow: none !important;
     }
     
     .navigation-links.active {
-        right: 0;
+        height: auto;
+        opacity: 1;
+        visibility: visible;
+        padding: 20px 0;
+        box-shadow: none !important;
+        background-color: white;
+        border: none;
     }
     
     .navigation-links li {
-        margin: 0 0 20px 0;
+        margin: 10px 0;
+    }
+    
+    .navigation-links li a {
+        color: var(--primary-color);
+        font-weight: 600;
     }
     
     body.menu-open {
@@ -344,13 +380,13 @@ nav ul li a:hover::after {
     
     .mobile-toggle span:nth-child(3) {
         transform: rotate(0);
-        top: 18px;
+        top: 16px;
     }
     
     /* Active state (X) */
     .menu-open .mobile-toggle span:nth-child(1) {
         transform: rotate(45deg);
-        top: 9px;
+        top: 8px;
     }
     
     .menu-open .mobile-toggle span:nth-child(2) {
@@ -359,7 +395,53 @@ nav ul li a:hover::after {
     
     .menu-open .mobile-toggle span:nth-child(3) {
         transform: rotate(-45deg);
-        top: 9px;
+        top: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo h1 {
+        font-size: 1.4rem;
+        margin: 0;
+    }
+    
+    .leaf {
+        width: 200px;
+        height: 60px;
+        margin: 0;
+    }
+    
+    header .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .logo {
+        margin-bottom: 10px;
+        justify-content: center;
+    }
+    
+    nav {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .navigation-links {
+        top: 140px; /* Ajustar de acordo com o tamanho do cabeçalho no mobile */
+    }
+    
+    .mobile-toggle {
+        margin: 10px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        height: 50px;
+    }
+    
+    .logo-text {
+        font-size: 12px;
     }
 }
 
@@ -367,17 +449,18 @@ nav ul li a:hover::after {
 .hero {
     background: linear-gradient(135deg, var(--primary-brown) 0%, var(--stylish-brown) 70%, var(--primary-brown) 100%);
     background-size: 400% 400%;
-    min-height: 320px;
+    min-height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     color: white;
-    padding: 90px 0 65px;
+    padding: 80px 0 40px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
     animation: gradientBg 15s ease infinite;
     border-bottom: 3px solid var(--primary-yellow);
+    margin-top: 90px;
 }
 
 .hero:before {
@@ -395,7 +478,7 @@ nav ul li a:hover::after {
     max-width: 600px;
     text-align: center;
     margin: 0 auto;
-    padding: 30px 25px 35px;
+    padding: 15px 20px 15px;
     position: relative;
     z-index: 2;
     background: transparent;
@@ -433,9 +516,9 @@ nav ul li a:hover::after {
 }
 
 .hero-content h1 {
-    font-size: 2.4rem;
+    font-size: 1.9rem;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     color: #fff;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     line-height: 1.2;
@@ -443,8 +526,8 @@ nav ul li a:hover::after {
 }
 
 .hero-content p {
-    font-size: 1.05rem;
-    margin-bottom: 15px;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
     line-height: 1.4;
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
@@ -458,8 +541,8 @@ nav ul li a:hover::after {
     background-color: var(--primary-yellow);
     color: var(--primary-brown);
     border: none;
-    padding: 10px 25px;
-    font-size: 15px;
+    padding: 8px 20px;
+    font-size: 14px;
     font-weight: 700;
     border-radius: 50px;
     cursor: pointer;
@@ -468,7 +551,7 @@ nav ul li a:hover::after {
     box-shadow: 0 4px 10px rgba(252, 159, 28, 0.25);
     position: relative;
     letter-spacing: 0.5px;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .btn-primary:hover {
@@ -1214,15 +1297,23 @@ footer::before {
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 20px;
     text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-bottom p {
-    margin: 0;
-    opacity: 0.8;
-    font-size: 0.95rem;
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.footer-developer {
+    font-weight: 600;
+    font-size: 15px;
+    color: #f1c40f;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
 }
 
 /* Responsividade já incorporada no responsive.css */
@@ -1953,5 +2044,72 @@ footer::before {
     .download-button {
         width: 100%;
         justify-content: center;
+    }
+}
+
+/* Navigation */
+.navigation-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.navigation-links li {
+    margin: 0 10px;
+}
+
+.navigation-links li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    position: relative;
+    padding: 5px 2px;
+    transition: all 0.3s ease;
+}
+
+.navigation-links li a:hover {
+    color: var(--secondary-color);
+}
+
+.navigation-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: width 0.3s ease;
+}
+
+.navigation-links li a:hover::after {
+    width: 100%;
+}
+
+.nav-overlay {
+    display: none;
+}
+
+/* Remove mobile toggle styles since we don't need them anymore */
+@media (max-width: 991px) {
+    .navigation-links {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background-color: white;
+    }
+    
+    .navigation-links li {
+        margin: 5px 10px;
+    }
+    
+    .navigation-links li a {
+        color: var(--primary-color);
+        font-weight: 600;
     }
 } 

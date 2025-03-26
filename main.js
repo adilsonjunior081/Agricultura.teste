@@ -106,8 +106,16 @@
                         const scrollTop = window.scrollY;
                         if (scrollTop > 50) {
                             header.classList.add('scrolled');
+                            // Ensure the header stays white even when scrolled
+                            header.style.backgroundColor = 'white';
+                            header.style.boxShadow = 'none';
+                            header.style.borderBottom = 'none';
                         } else {
                             header.classList.remove('scrolled');
+                            // Reset to default styles
+                            header.style.backgroundColor = 'white';
+                            header.style.boxShadow = 'none';
+                            header.style.borderBottom = 'none';
                         }
                         lastScrollTime = now;
                         ticking = false;
@@ -315,5 +323,32 @@
                hostname.includes('.dev.') ||
                hostname.includes('-staging.') ||
                hostname.endsWith('.ngrok.io');
+    }
+
+    // Function to handle scroll events
+    function handleScroll() {
+        const header = document.querySelector('header');
+        const scrollPosition = window.scrollY;
+        
+        // Add/remove scrolled class based on scroll position
+        if (scrollPosition > 10) {
+            header.classList.add('scrolled');
+            // Ensure the header stays white even when scrolled
+            header.style.backgroundColor = 'white';
+            header.style.boxShadow = 'none';
+        } else {
+            header.classList.remove('scrolled');
+            // Reset to default styles
+            header.style.backgroundColor = 'white';
+            header.style.boxShadow = 'none';
+        }
+        
+        // Animate elements when they become visible
+        const animateElements = document.querySelectorAll('.animate-on-scroll:not(.animated)');
+        animateElements.forEach(element => {
+            if (isElementInViewport(element)) {
+                element.classList.add('animated');
+            }
+        });
     }
 })(); 
